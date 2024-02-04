@@ -1,4 +1,4 @@
-import { useRegister, useGetUserLogged } from "./network/auth";
+import { useRegister, useGetUserLogged } from "./networks/auth";
 import { useState } from "react";
 
 function App() {
