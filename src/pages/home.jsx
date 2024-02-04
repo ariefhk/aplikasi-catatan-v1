@@ -1,12 +1,12 @@
-import { useRegister, useGetUserLogged } from "./networks/auth";
+import { useRegister } from "../networks/auth";
 import { useState } from "react";
 
-function App() {
+function Home() {
     const { mutate } = useRegister((_, err) => {
         console.log(err);
     });
 
-    const { data, error } = useGetUserLogged();
+    // const { data, error } = useGetUserLogged();
 
     const [formData, setFormData] = useState({
         name: "",
@@ -36,9 +36,9 @@ function App() {
         });
     };
 
-    if (error) {
-        console.log({ data, error });
-    }
+    // if (error) {
+    //     console.log({ data, error });
+    // }
 
     return (
         <div className=" bg-violet-500 h-screen w-screen flex justify-center items-center">
@@ -86,4 +86,4 @@ function App() {
     );
 }
 
-export default App;
+export default Home;

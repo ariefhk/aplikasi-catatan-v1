@@ -60,7 +60,7 @@ export const useLogin = (callback = null) => {
     });
 };
 
-export const useGetUserLogged = () => {
+export const useGetUserLogged = (callbackErr = null) => {
     return useQuery({
         retry: false,
         queryKey: ["get_user_logged"],
@@ -72,10 +72,15 @@ export const useGetUserLogged = () => {
                         Authorization: `Bearer ${getStorageData("accessToken")}`,
                     },
                 });
+                if (callbackErr && typeof callbackErr === "function") {
+                    callbackErr(null);
+                }
                 return response;
             } catch (error) {
                 if (error instanceof AxiosError) {
-                    // console.log(error);
+                    if (callbackErr && typeof callbackErr === "function") {
+                        callbackErr(error);
+                    }
                     throw error;
                 }
             }
