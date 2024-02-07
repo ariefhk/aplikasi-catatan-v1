@@ -1,8 +1,11 @@
 import { Link } from "react-router-dom";
 import Navbar from "../components/navbar";
 import { useForm } from "react-hook-form";
+import { useRegister } from "../networks/auth";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -11,8 +14,28 @@ const Register = () => {
         mode: "onChange",
     });
 
+    const { mutate: regis } = useRegister({
+        onSuccess: (dataRegis) => {
+            alert("SUCCESS REGIS");
+            console.log("Regis Data: ", dataRegis);
+            navigate("/login", { replace: true });
+        },
+        onError: (errorRegis) => {
+            alert("ERROR REGIS");
+            console.log("Error Regis: ", errorRegis);
+        },
+    });
+
     const handleRegisterAccount = async (data) => {
         console.log(data);
+
+        const formData = {
+            name: data?.name,
+            email: data?.email,
+            password: data?.password,
+        };
+
+        regis(formData);
     };
 
     return (

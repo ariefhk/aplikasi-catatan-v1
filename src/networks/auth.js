@@ -3,7 +3,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { getStorageData } from "../utils/local-storage";
 import { AxiosError } from "axios";
 
-export const useRegister = (callback = null) => {
+export const useRegister = (mutationSetting = {}) => {
     return useMutation({
         mutationKey: ["register"],
         mutationFn: ({ name, email, password }) => {
@@ -17,24 +17,15 @@ export const useRegister = (callback = null) => {
                 }
             );
         },
-        onSuccess: (data) => {
-            if (callback && typeof callback === "function") {
-                callback(data, null);
-            }
-        },
-        onError: (err) => {
-            if (callback && typeof callback === "function") {
-                callback(null, err);
-            }
-        },
+        ...mutationSetting,
     });
 };
 
-export const useLogin = (callback = null) => {
+export const useLogin = (mutationSetting = {}) => {
     return useMutation({
         mutationKey: ["login"],
-        mutationFn: ({ email, password }) => {
-            return apiInstance.post(
+        mutationFn: async ({ email, password }) => {
+            const response = await apiInstance.post(
                 "/login",
                 {
                     email,
@@ -46,21 +37,14 @@ export const useLogin = (callback = null) => {
                     },
                 }
             );
+
+            return response.data;
         },
-        onSuccess: (data) => {
-            if (callback && typeof callback === "function") {
-                callback(data, null);
-            }
-        },
-        onError: (err) => {
-            if (callback && typeof callback === "function") {
-                callback(null, err);
-            }
-        },
+        ...mutationSetting,
     });
 };
 
-export const useGetUserLogged = (callbackErr = null) => {
+export const useGetUserLogged = (callbackErr = null, querySetting = {}) => {
     return useQuery({
         retry: false,
         queryKey: ["get_user_logged"],
@@ -72,9 +56,7 @@ export const useGetUserLogged = (callbackErr = null) => {
                         Authorization: `Bearer ${getStorageData("accessToken")}`,
                     },
                 });
-                if (callbackErr && typeof callbackErr === "function") {
-                    callbackErr(null);
-                }
+
                 return response;
             } catch (error) {
                 if (error instanceof AxiosError) {
@@ -83,8 +65,10 @@ export const useGetUserLogged = (callbackErr = null) => {
                     }
                     throw error;
                 }
+                throw error;
             }
         },
         refetchOnWindowFocus: false,
+        ...querySetting,
     });
 };

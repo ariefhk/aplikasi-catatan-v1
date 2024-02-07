@@ -1,8 +1,12 @@
 import Navbar from "../components/navbar";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { useLogin } from "../networks/auth";
+import { useNavigate } from "react-router-dom";
+import { saveStorageData } from "../utils/local-storage";
 
 const Login = () => {
+    const navigate = useNavigate();
     const {
         register,
         handleSubmit,
@@ -11,8 +15,33 @@ const Login = () => {
         mode: "onChange",
     });
 
+    const {
+        // data: loginData,
+        // isPending: isLoadingLogin,
+        mutate: login,
+    } = useLogin({
+        onSuccess: (dataLogin) => {
+            alert("SUCCESS LOGIN");
+            console.log("Login Data: ", dataLogin);
+            const token = dataLogin?.data?.accessToken;
+            saveStorageData("accessToken", token);
+            navigate("/", { replace: true });
+        },
+        onError: (errorLogin) => {
+            alert("ERROR LOGIN");
+            console.log("Error Login: ", errorLogin);
+        },
+    });
+
     const handleLoginAccount = async (data) => {
         console.log(data);
+
+        const formData = {
+            email: data?.email,
+            password: data?.password,
+        };
+
+        login(formData);
     };
 
     return (
