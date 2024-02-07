@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useLogin } from "../networks/auth";
 import { useNavigate } from "react-router-dom";
-import { saveStorageData } from "../utils/local-storage";
+import { useAuth } from "../contexts/auth-context";
 
 const Login = () => {
+    const { setToken } = useAuth();
     const navigate = useNavigate();
     const {
         register,
@@ -24,7 +25,7 @@ const Login = () => {
             alert("SUCCESS LOGIN");
             console.log("Login Data: ", dataLogin);
             const token = dataLogin?.data?.accessToken;
-            saveStorageData("accessToken", token);
+            setToken(token);
             navigate("/", { replace: true });
         },
         onError: (errorLogin) => {

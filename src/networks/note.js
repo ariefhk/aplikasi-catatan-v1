@@ -2,17 +2,22 @@ import { apiInstance } from "./instance";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { getStorageData } from "../utils/local-storage";
 
-export const useGetNotes = () => {
+export const useGetNotes = (searchInput, querySetting = {}) => {
     return useQuery({
-        queryKey: ["get_notes"],
-        queryFn: ({ signal }) => {
-            return apiInstance.get(`/notes`, {
+        queryKey: ["get_notes", searchInput],
+        queryFn: async ({ signal }) => {
+            const response = await apiInstance.get(`/notes`, {
                 signal,
                 headers: {
                     Authorization: `Bearer ${getStorageData("accessToken")}`,
                 },
             });
+
+            return response?.data?.data?.filter((todo) => {
+                return todo?.title?.toLowerCase().includes(searchInput.toLowerCase());
+            });
         },
+        ...querySetting,
     });
 };
 
