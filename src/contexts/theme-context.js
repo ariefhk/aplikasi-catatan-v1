@@ -1,7 +1,7 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 export const ThemeContext = createContext(null);
 
 export const useTheme = () => {
-    return createContext(ThemeContext);
+    return useContext(ThemeContext);
 };

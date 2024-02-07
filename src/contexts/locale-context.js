@@ -1,7 +1,7 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
 export const LocaleContext = createContext(null);
 
 export const useLocale = () => {
-    return createContext(LocaleContext);
+    return useContext(LocaleContext);
 };
