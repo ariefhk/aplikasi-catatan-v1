@@ -7,6 +7,7 @@ import { useAuth } from "../contexts/auth-context";
 
 const Login = () => {
     const { setToken } = useAuth();
+
     const navigate = useNavigate();
     const {
         register,
