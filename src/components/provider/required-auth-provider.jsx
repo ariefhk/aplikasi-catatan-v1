@@ -1,11 +1,11 @@
-import { useNavigate, Outlet } from "react-router-dom";
-import { useGetUserLogged } from "../networks/auth";
+import { useNavigate, Outlet } from 'react-router-dom';
+import { useGetUserLogged } from '../../networks/auth';
 
 const RequiredAuthProvider = () => {
     const navigate = useNavigate();
     const { data: userData, isSuccess } = useGetUserLogged((err) => {
         if (Object.keys(err)?.length !== 0) {
-            navigate("/login", { replace: true });
+            navigate('/login', { replace: true });
             // console.log(err);
         }
     });

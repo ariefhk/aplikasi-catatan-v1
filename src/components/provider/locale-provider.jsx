@@ -1,4 +1,4 @@
-import { LocaleContext } from '../contexts/locale-context';
+import { LocaleContext } from '../../contexts/locale-context';
 import { useState, useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
 

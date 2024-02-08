@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useEffect, useMemo, useState } from 'react';
-import { deleteStorageData, getStorageData, saveStorageData } from '../utils/local-storage';
+import { deleteStorageData, getStorageData, saveStorageData } from '../../utils/local-storage';
 import PropTypes from 'prop-types';
-import { AuthContext } from '../contexts/auth-context';
+import { AuthContext } from '../../contexts/auth-context';
 
 const AuthProvider = ({ children }) => {
     // State to hold the authentication token
