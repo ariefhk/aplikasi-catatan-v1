@@ -1,12 +1,12 @@
-import axios from "axios";
-import { useEffect, useMemo, useState } from "react";
-import { deleteStorageData, getStorageData, saveStorageData } from "../utils/local-storage";
-import PropTypes from "prop-types";
-import { AuthContext } from "../contexts/auth-context";
+import axios from 'axios';
+import { useEffect, useMemo, useState } from 'react';
+import { deleteStorageData, getStorageData, saveStorageData } from '../utils/local-storage';
+import PropTypes from 'prop-types';
+import { AuthContext } from '../contexts/auth-context';
 
 const AuthProvider = ({ children }) => {
     // State to hold the authentication token
-    const [token, setToken_] = useState(getStorageData("accessToken"));
+    const [token, setToken_] = useState(getStorageData('accessToken'));
 
     // Function to set the authentication token
     const setToken = (newToken) => {
@@ -15,27 +15,25 @@ const AuthProvider = ({ children }) => {
 
     useEffect(() => {
         if (token) {
-            axios.defaults.headers.common["Authorization"] = "Bearer " + token;
-            // localStorage.setItem("token", token);
-            saveStorageData("accessToken", token);
+            axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+            saveStorageData('accessToken', token);
         } else {
-            delete axios.defaults.headers.common["Authorization"];
-            // localStorage.removeItem("token");
-            deleteStorageData("accessToken");
+            delete axios.defaults.headers.common['Authorization'];
+            deleteStorageData('accessToken');
         }
     }, [token]);
 
     // Memoized value of the authentication context
-    const contextValue = useMemo(
+    const authContextValue = useMemo(
         () => ({
             token,
             setToken,
         }),
-        [token]
+        [token],
     );
 
     // Provide the authentication context to the children components
-    return <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>;
+    return <AuthContext.Provider value={authContextValue}>{children}</AuthContext.Provider>;
 };
 
 export default AuthProvider;
