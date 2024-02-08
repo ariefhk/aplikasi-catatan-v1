@@ -2,6 +2,7 @@ import { MdGTranslate } from "react-icons/md";
 import { IoMdMoon } from "react-icons/io";
 
 const Navbar = () => {
+    console.log("render navbar");
     return (
         <div className="w-screen h-[60px] border-b border-black fixed top-0 z-20 bg-white ">
             <nav className="max-w-screen-xl flex items-center h-full  mx-auto justify-between">

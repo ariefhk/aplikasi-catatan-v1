@@ -12,7 +12,24 @@ export const useGetNotes = (searchInput, querySetting = {}) => {
                     Authorization: `Bearer ${getStorageData("accessToken")}`,
                 },
             });
+            return response?.data?.data?.filter((todo) => {
+                return todo?.title?.toLowerCase().includes(searchInput?.toLowerCase());
+            });
+        },
+        ...querySetting,
+    });
+};
 
+export const useGetArchivedNotes = (searchInput, querySetting = {}) => {
+    return useQuery({
+        queryKey: ["get_archived_notes", searchInput],
+        queryFn: async ({ signal }) => {
+            const response = await apiInstance.get(`/notes/archived`, {
+                signal,
+                headers: {
+                    Authorization: `Bearer ${getStorageData("accessToken")}`,
+                },
+            });
             return response?.data?.data?.filter((todo) => {
                 return todo?.title?.toLowerCase().includes(searchInput.toLowerCase());
             });
@@ -21,40 +38,28 @@ export const useGetNotes = (searchInput, querySetting = {}) => {
     });
 };
 
-export const useGetArchivedNotes = () => {
-    return useQuery({
-        queryKey: ["get_archived_notes"],
-        queryFn: ({ signal }) => {
-            return apiInstance.get(`/notes/archived`, {
-                signal,
-                headers: {
-                    Authorization: `Bearer ${getStorageData("accessToken")}`,
-                },
-            });
-        },
-    });
-};
-
-export const useGetNote = (id) => {
+export const useGetNote = (id, querySetting = {}) => {
     return useQuery({
         queryKey: ["get_note_by_id", id],
-        queryFn: ({ signal }) => {
-            return apiInstance.get(`/notes/${id}`, {
+        queryFn: async ({ signal }) => {
+            const response = await apiInstance.get(`/notes/${id}`, {
                 signal,
                 headers: {
                     Authorization: `Bearer ${getStorageData("accessToken")}`,
                 },
             });
+            return response?.data;
         },
         enabled: !!id,
+        ...querySetting,
     });
 };
 
-export const useCreateNote = (callback = null) => {
+export const useCreateNote = (mutationSetting = {}) => {
     return useMutation({
         mutationKey: ["create_note"],
-        mutationFn: ({ title, body }) => {
-            return apiInstance.post(
+        mutationFn: async ({ title, body }) => {
+            const response = await apiInstance.post(
                 `/notes`,
                 {
                     title,
@@ -66,85 +71,57 @@ export const useCreateNote = (callback = null) => {
                     },
                 }
             );
+            return response?.data;
         },
-        onSuccess: (data) => {
-            if (callback && typeof callback === "function") {
-                callback(data, null);
-            }
-        },
-        onError: (err) => {
-            if (callback && typeof callback === "function") {
-                callback(null, err);
-            }
-        },
+
+        ...mutationSetting,
     });
 };
 
-export const usePostArchiveNote = (callback = null) => {
+export const usePostArchiveNote = (mutationSetting = {}) => {
     return useMutation({
         mutationKey: ["post_archive_note"],
-        mutationFn: ({ id }) => {
-            return apiInstance.post(`/notes/${id}/archive`, {
+        mutationFn: async ({ id }) => {
+            const response = await apiInstance.post(`/notes/${id}/archive`, {
                 headers: {
                     Authorization: `Bearer ${getStorageData("accessToken")}`,
                 },
             });
+
+            return response?.data;
         },
-        onSuccess: (data) => {
-            if (callback && typeof callback === "function") {
-                callback(data, null);
-            }
-        },
-        onError: (err) => {
-            if (callback && typeof callback === "function") {
-                callback(null, err);
-            }
-        },
+        ...mutationSetting,
     });
 };
 
-export const usePostUnArchiveNote = (callback = null) => {
+export const usePostUnArchiveNote = (mutationSetting = {}) => {
     return useMutation({
         mutationKey: ["post_unarchive_note"],
-        mutationFn: ({ id }) => {
-            return apiInstance.post(`/notes/${id}/unarchive`, {
+        mutationFn: async ({ id }) => {
+            const response = await apiInstance.post(`/notes/${id}/unarchive`, {
                 headers: {
                     Authorization: `Bearer ${getStorageData("accessToken")}`,
                 },
             });
+
+            return response?.data;
         },
-        onSuccess: (data) => {
-            if (callback && typeof callback === "function") {
-                callback(data, null);
-            }
-        },
-        onError: (err) => {
-            if (callback && typeof callback === "function") {
-                callback(null, err);
-            }
-        },
+        ...mutationSetting,
     });
 };
 
-export const useDeleteNote = (callback = null) => {
+export const useDeleteNote = (mutationSetting = {}) => {
     return useMutation({
         mutationKey: ["delete_note"],
-        mutationFn: ({ id }) => {
-            return apiInstance.delete(`/notes/${id}`, {
+        mutationFn: async ({ id }) => {
+            const response = await apiInstance.delete(`/notes/${id}`, {
                 headers: {
                     Authorization: `Bearer ${getStorageData("accessToken")}`,
                 },
             });
+
+            return response?.data;
         },
-        onSuccess: (data) => {
-            if (callback && typeof callback === "function") {
-                callback(data, null);
-            }
-        },
-        onError: (err) => {
-            if (callback && typeof callback === "function") {
-                callback(null, err);
-            }
-        },
+        ...mutationSetting,
     });
 };

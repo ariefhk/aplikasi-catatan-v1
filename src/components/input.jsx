@@ -6,7 +6,9 @@ const Input = forwardRef(function Input({ className, type, ...props }, ref) {
     return <input {...props} ref={ref} type={type} className={cn(className)} />;
 });
 
-export default Input;
+Input.displayName = "Input";
+
+export { Input };
 
 Input.propTypes = {
     className: Proptypes.string,
