@@ -22,7 +22,7 @@ const ListNotes = ({ className }) => {
                 notes.length > 0 &&
                 notes.map((note) => {
                     return (
-                        <div key={note?.id} className='h-[200px] rounded-lg border p-[10px]'>
+                        <div key={note?.id} className='h-[200px] cursor-pointer rounded-lg border p-[10px]'>
                             {note?.title}
                         </div>
                     );

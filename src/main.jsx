@@ -5,9 +5,9 @@ import AppRoute from './route.jsx';
 import './global.css';
 
 // provider
-import ThemeContextProvider from './components/provider/theme-provider.jsx';
-import LocaleContextProvider from './components/provider/locale-provider.jsx';
-import AuthProvider from './components/provider/auth-provider.jsx';
+import ThemeContextProvider from './providers/theme-provider.jsx';
+import LocaleContextProvider from './providers/locale-provider.jsx';
+import AuthProvider from './providers/auth-provider.jsx';
 
 // react query
 const queryClient = new QueryClient();

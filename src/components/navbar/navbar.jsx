@@ -3,6 +3,7 @@ import Logout from './logout';
 import LoggedUser from './logged-user';
 import Language from './language';
 import NavbarBrand from './navbar-brand';
+import ArchivedButton from './archived-button';
 
 const Navbar = () => {
     console.log('render navbar');
@@ -12,6 +13,7 @@ const Navbar = () => {
             <nav className='mx-auto flex h-full max-w-screen-xl  items-center justify-between'>
                 <NavbarBrand />
                 <div className='flex items-center  gap-x-[30px]'>
+                    <ArchivedButton />
                     <Logout />
                     <Language />
                     <DarkMode />

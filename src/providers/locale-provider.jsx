@@ -1,13 +1,21 @@
-import { LocaleContext } from '../../contexts/locale-context';
+import { LocaleContext } from '../contexts/locale-context';
 import { useState, useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
+import { getStorageData, saveStorageData } from '../utils/local-storage';
 
 const LocaleContextProvider = ({ children }) => {
-    const [locale, setLocale] = useState('id');
+    const [locale, setLocale] = useState(getStorageData('locale') || 'id');
 
     const changeLocale = useCallback(() => {
         const isId = locale === 'id';
-        setLocale(isId ? 'en' : 'id');
+
+        if (isId) {
+            saveStorageData('locale', 'en');
+            return setLocale('en');
+        } else {
+            saveStorageData('locale', 'id');
+            return setLocale('id');
+        }
     }, [locale]);
 
     // Memoized value of the locale context

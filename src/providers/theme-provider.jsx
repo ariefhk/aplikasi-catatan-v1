@@ -1,7 +1,7 @@
 import { useState, useMemo, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import { ThemeContext } from '../../contexts/theme-context';
-import { getStorageData, saveStorageData } from '../../utils/local-storage';
+import { ThemeContext } from '../contexts/theme-context';
+import { getStorageData, saveStorageData } from '../utils/local-storage';
 
 const ThemeContextProvider = ({ children }) => {
     const [theme, setTheme] = useState(getStorageData('theme') || 'light');

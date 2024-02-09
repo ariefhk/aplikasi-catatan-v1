@@ -1,8 +1,8 @@
 import { MdGTranslate } from 'react-icons/md';
-import { useTheme } from '../../contexts/theme-context';
+import { useLocale } from '../../contexts/locale-context';
 
 const Language = () => {
-    const { changeLocale } = useTheme();
+    const { changeLocale } = useLocale();
 
     return (
         <MdGTranslate
