@@ -8,7 +8,7 @@ const Button = forwardRef(function Button({ className, type, children, ...props 
             {...props}
             ref={ref}
             className={cn(
-                'border-baseBlack bg-baseBlack text-baseWhite hover:border-baseBlack  hover:bg-baseWhite hover:text-baseBlack flex h-[53px] w-full items-center justify-center rounded-[8px] border-2 p-[12px] text-[24px] font-bold leading-normal',
+                'flex h-[53px] w-full   items-center justify-center rounded-[8px] border-2 border-baseBlack bg-baseBlack p-[12px] text-[24px] font-bold leading-normal text-baseWhite',
                 className,
             )}
             type={type}>
@@ -16,6 +16,8 @@ const Button = forwardRef(function Button({ className, type, children, ...props 
         </button>
     );
 });
+
+// hover:border-baseBlack  hover:bg-baseWhite hover:text-baseBlack
 
 export default Button;
 

@@ -12,7 +12,7 @@ const Input = forwardRef(({ className, type, ...props }, ref) => {
             ref={ref}
             type={type || 'text'}
             className={cn(
-                'border-baseBlack text-baseBlack h-[43px] w-full rounded-[8px] border-[3px] p-[8px] text-[18px] leading-normal',
+                'h-[43px] w-full rounded-[8px] border-[3px] border-baseBlack bg-baseWhite p-[8px] text-[18px] leading-normal text-baseBlack',
                 className,
             )}
         />
@@ -35,7 +35,7 @@ const InputQuery = forwardRef(function InputQuery({ type, query, className, ...p
             ref={ref}
             type={type || 'text'}
             className={cn(
-                'border-baseBlack text-baseBlack h-[43px] w-full rounded-[8px] border-[3px] p-[8px] text-[18px] leading-normal',
+                'h-[43px] w-full rounded-[8px] border-[3px] border-baseBlack bg-baseWhite p-[8px] text-[18px] leading-normal text-baseBlack',
                 className,
             )}
             value={keywordQueryInput}
@@ -62,7 +62,7 @@ const PasswordInput = forwardRef(({ className, ...props }, ref) => {
                 ref={ref}
                 type={showPassword ? 'text' : 'password'}
                 className={cn(
-                    'border-baseBlack text-baseBlack h-[43px] w-full rounded-[8px] border-[3px] p-[8px] text-[18px] leading-normal',
+                    'h-[43px] w-full rounded-[8px] border-[3px] border-baseBlack bg-baseWhite p-[8px] text-[18px] leading-normal text-baseBlack',
                     className,
                 )}
             />
@@ -102,7 +102,7 @@ const InputField = forwardRef(
                         ref={ref}
                         type={type || 'text'}
                         className={cn(
-                            'border-baseBlack text-baseBlack h-[43px] w-full rounded-[8px] border-[3px] p-[8px] text-[18px] leading-normal',
+                            'h-[43px] w-full rounded-[8px] border-[3px] border-baseBlack bg-baseWhite p-[8px] text-[18px] leading-normal text-baseBlack',
                             classNameInput,
                         )}
                     />
@@ -122,7 +122,7 @@ const InputField = forwardRef(
                     ref={ref}
                     type={type || 'text'}
                     className={cn(
-                        'border-baseBlack text-baseBlack h-[43px] w-full rounded-[8px] border-[3px] p-[8px] text-[18px] leading-normal',
+                        'h-[43px] w-full rounded-[8px] border-[3px] border-baseBlack bg-baseWhite p-[8px] text-[18px] leading-normal text-baseBlack',
                         classNameInput,
                     )}
                 />

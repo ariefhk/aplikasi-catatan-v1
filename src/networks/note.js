@@ -48,7 +48,8 @@ export const useGetNote = (id, querySetting = {}) => {
                     Authorization: `Bearer ${getStorageData('accessToken')}`,
                 },
             });
-            return response?.data;
+            console.log(response?.data.data);
+            return response?.data?.data;
         },
         enabled: !!id,
         ...querySetting,

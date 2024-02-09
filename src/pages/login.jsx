@@ -1,10 +1,11 @@
 import Navbar from '../components/navbar/navbar';
 import { Link } from 'react-router-dom';
 import LoginForm from '../components/login/login-form';
+import DefaultLayout from '../layouts/default-layout';
 
 const Login = () => {
     return (
-        <main className='overflow-x-hidden'>
+        <DefaultLayout>
             <Navbar />
             <section className='mx-auto mt-[60px] max-w-screen-lg py-[32px]'>
                 <h1 className='text-[24px] font-bold leading-normal'>Yuk, login untuk menggunakan aplikasi</h1>
@@ -16,7 +17,7 @@ const Login = () => {
                     </Link>
                 </p>
             </section>
-        </main>
+        </DefaultLayout>
     );
 };
 

@@ -2,11 +2,12 @@ import ListNotes from '../components/home/list-notes';
 import Navbar from '../components/navbar/navbar';
 import DefaultLayout from '../layouts/default-layout';
 import { InputQuery } from '../components/input';
+import AddNoteButton from '../components/home/add-note-button';
 
 function Home() {
     console.log('render home');
     return (
-        <DefaultLayout>
+        <DefaultLayout className={'relative overflow-y-hidden'}>
             <Navbar />
             <section
                 className={
@@ -17,6 +18,7 @@ function Home() {
 
                 <ListNotes />
             </section>
+            <AddNoteButton />
         </DefaultLayout>
     );
 }

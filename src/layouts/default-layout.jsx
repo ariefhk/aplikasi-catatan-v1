@@ -1,11 +1,13 @@
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types';
+import { cn } from '../utils/tailwind-merge';
 
-const DefaultLayout = ({ children }) => {
-    return <main className="overflow-hidden h-screen w-screen">{children}</main>;
+const DefaultLayout = ({ className, children }) => {
+    return <main className={cn('h-screen w-screen overflow-x-hidden bg-baseWhite', className)}>{children}</main>;
 };
 
 export default DefaultLayout;
 
 DefaultLayout.propTypes = {
     children: PropTypes.node,
+    className: PropTypes.string,
 };

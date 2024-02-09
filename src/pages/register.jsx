@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
 import Navbar from '../components/navbar/navbar';
 import RegisForm from '../components/register/regis-form';
+import DefaultLayout from '../layouts/default-layout';
 
 const Register = () => {
     return (
-        <main className='overflow-x-hidden'>
+        <DefaultLayout className='overflow-y-auto'>
             <Navbar />
             <section className='mx-auto mt-[60px]  max-w-screen-lg py-[32px]'>
                 <h1 className='text-[24px] font-bold leading-normal'>Isi form untuk mendaftar akun</h1>
@@ -16,7 +17,7 @@ const Register = () => {
                     </Link>
                 </p>
             </section>
-        </main>
+        </DefaultLayout>
     );
 };
 

@@ -6,6 +6,7 @@ import ProtectedRoutes from './components/route/protected-routes';
 import Anonymous from './components/route/anonymous';
 import EditNote from './pages/edit-notes';
 import ArchivedNotes from './pages/archived-notes';
+import CreateNotes from './pages/create-notes';
 
 const AppRoute = () => {
     return (
@@ -18,6 +19,7 @@ const AppRoute = () => {
             <Route element={<ProtectedRoutes />}>
                 <Route path='/' element={<Home />} />
                 <Route path='/archives' element={<ArchivedNotes />} />
+                <Route path='/note/new' element={<CreateNotes />} />
                 <Route path='/notes/:id' element={<EditNote />} />
             </Route>
         </Routes>
