@@ -1,6 +1,8 @@
-import { MdGTranslate } from 'react-icons/md';
 import DarkMode from './dark-mode';
 import Logout from './logout';
+import LoggedUser from './logged-user';
+import Language from './language';
+import NavbarBrand from './navbar-brand';
 
 const Navbar = () => {
     console.log('render navbar');
@@ -8,11 +10,12 @@ const Navbar = () => {
     return (
         <section className='fixed top-0 z-20 h-[60px] w-screen border-b border-black bg-white '>
             <nav className='mx-auto flex h-full max-w-screen-xl  items-center justify-between'>
-                <h1 className='text-3xl font-semibold underline'>Aplikasi Catatan</h1>
+                <NavbarBrand />
                 <div className='flex items-center  gap-x-[30px]'>
                     <Logout />
-                    <MdGTranslate className='h-[30px] w-[30px] cursor-pointer' />
+                    <Language />
                     <DarkMode />
+                    <LoggedUser />
                 </div>
             </nav>
         </section>

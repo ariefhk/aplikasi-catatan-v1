@@ -44,31 +44,21 @@ export const useLogin = (mutationSetting = {}) => {
     });
 };
 
-export const useGetUserLogged = (callbackErr = null, querySetting = {}) => {
+export const useGetUserLogged = (token) => {
     return useQuery({
         retry: false,
-        queryKey: ['get_user_logged'],
+        queryKey: ['get_user_logged', token],
         queryFn: async ({ signal }) => {
-            try {
-                const response = await apiInstance.get('/users/me', {
-                    signal,
-                    headers: {
-                        Authorization: `Bearer ${getStorageData('accessToken')}`,
-                    },
-                });
+            const response = await apiInstance.get('/users/me', {
+                signal,
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
 
-                return response;
-            } catch (error) {
-                if (error instanceof AxiosError) {
-                    if (callbackErr && typeof callbackErr === 'function') {
-                        callbackErr(error);
-                    }
-                    throw error;
-                }
-                throw error;
-            }
+            return response.data;
         },
-        refetchOnWindowFocus: false,
-        ...querySetting,
+        refetchOnWindowFocus: true,
+        enabled: !!token,
     });
 };
