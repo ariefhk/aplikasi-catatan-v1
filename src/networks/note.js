@@ -1,15 +1,15 @@
-import { apiInstance } from "./instance";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { getStorageData } from "../utils/local-storage";
+import { apiInstance } from './instance';
+import { useMutation, useQuery } from '@tanstack/react-query';
+import { getStorageData } from '../utils/local-storage';
 
 export const useGetNotes = (searchInput, querySetting = {}) => {
     return useQuery({
-        queryKey: ["get_notes", searchInput],
+        queryKey: ['get_notes', searchInput],
         queryFn: async ({ signal }) => {
             const response = await apiInstance.get(`/notes`, {
                 signal,
                 headers: {
-                    Authorization: `Bearer ${getStorageData("accessToken")}`,
+                    Authorization: `Bearer ${getStorageData('accessToken')}`,
                 },
             });
             return response?.data?.data?.filter((todo) => {
@@ -22,12 +22,12 @@ export const useGetNotes = (searchInput, querySetting = {}) => {
 
 export const useGetArchivedNotes = (searchInput, querySetting = {}) => {
     return useQuery({
-        queryKey: ["get_archived_notes", searchInput],
+        queryKey: ['get_archived_notes', searchInput],
         queryFn: async ({ signal }) => {
             const response = await apiInstance.get(`/notes/archived`, {
                 signal,
                 headers: {
-                    Authorization: `Bearer ${getStorageData("accessToken")}`,
+                    Authorization: `Bearer ${getStorageData('accessToken')}`,
                 },
             });
             return response?.data?.data?.filter((todo) => {
@@ -40,12 +40,12 @@ export const useGetArchivedNotes = (searchInput, querySetting = {}) => {
 
 export const useGetNote = (id, querySetting = {}) => {
     return useQuery({
-        queryKey: ["get_note_by_id", id],
+        queryKey: ['get_note_by_id', id],
         queryFn: async ({ signal }) => {
             const response = await apiInstance.get(`/notes/${id}`, {
                 signal,
                 headers: {
-                    Authorization: `Bearer ${getStorageData("accessToken")}`,
+                    Authorization: `Bearer ${getStorageData('accessToken')}`,
                 },
             });
             return response?.data;
@@ -57,7 +57,7 @@ export const useGetNote = (id, querySetting = {}) => {
 
 export const useCreateNote = (mutationSetting = {}) => {
     return useMutation({
-        mutationKey: ["create_note"],
+        mutationKey: ['create_note'],
         mutationFn: async ({ title, body }) => {
             const response = await apiInstance.post(
                 `/notes`,
@@ -67,9 +67,9 @@ export const useCreateNote = (mutationSetting = {}) => {
                 },
                 {
                     headers: {
-                        Authorization: `Bearer ${getStorageData("accessToken")}`,
+                        Authorization: `Bearer ${getStorageData('accessToken')}`,
                     },
-                }
+                },
             );
             return response?.data;
         },
@@ -80,11 +80,11 @@ export const useCreateNote = (mutationSetting = {}) => {
 
 export const usePostArchiveNote = (mutationSetting = {}) => {
     return useMutation({
-        mutationKey: ["post_archive_note"],
+        mutationKey: ['post_archive_note'],
         mutationFn: async ({ id }) => {
             const response = await apiInstance.post(`/notes/${id}/archive`, {
                 headers: {
-                    Authorization: `Bearer ${getStorageData("accessToken")}`,
+                    Authorization: `Bearer ${getStorageData('accessToken')}`,
                 },
             });
 
@@ -96,11 +96,11 @@ export const usePostArchiveNote = (mutationSetting = {}) => {
 
 export const usePostUnArchiveNote = (mutationSetting = {}) => {
     return useMutation({
-        mutationKey: ["post_unarchive_note"],
+        mutationKey: ['post_unarchive_note'],
         mutationFn: async ({ id }) => {
             const response = await apiInstance.post(`/notes/${id}/unarchive`, {
                 headers: {
-                    Authorization: `Bearer ${getStorageData("accessToken")}`,
+                    Authorization: `Bearer ${getStorageData('accessToken')}`,
                 },
             });
 
@@ -112,11 +112,11 @@ export const usePostUnArchiveNote = (mutationSetting = {}) => {
 
 export const useDeleteNote = (mutationSetting = {}) => {
     return useMutation({
-        mutationKey: ["delete_note"],
+        mutationKey: ['delete_note'],
         mutationFn: async ({ id }) => {
             const response = await apiInstance.delete(`/notes/${id}`, {
                 headers: {
-                    Authorization: `Bearer ${getStorageData("accessToken")}`,
+                    Authorization: `Bearer ${getStorageData('accessToken')}`,
                 },
             });
 

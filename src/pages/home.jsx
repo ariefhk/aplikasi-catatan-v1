@@ -1,5 +1,5 @@
 import ListNotes from '../components/home/list-notes';
-import Navbar from '../components/navbar';
+import Navbar from '../components/navbar/navbar';
 import DefaultLayout from '../layouts/default-layout';
 import { InputQuery } from '../components/input';
 

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { apiInstance } from '../../networks/instance';
 import { useEffect, useMemo, useState } from 'react';
 import { deleteStorageData, getStorageData, saveStorageData } from '../../utils/local-storage';
 import PropTypes from 'prop-types';
@@ -14,12 +14,18 @@ const AuthProvider = ({ children }) => {
         setToken_(newToken);
     };
 
+    // Function to delete the authentication token
+    const deleteToken = () => {
+        deleteStorageData('accessToken');
+        setToken_(null);
+    };
+
     useEffect(() => {
         if (token) {
-            axios.defaults.headers.common['Authorization'] = 'Bearer ' + token;
+            apiInstance.defaults.headers.Authorization = `Bearer ${token}`;
             saveStorageData('accessToken', token);
         } else {
-            delete axios.defaults.headers.common['Authorization'];
+            delete apiInstance.defaults.headers.common['Authorization'];
             deleteStorageData('accessToken');
         }
     }, [token]);
@@ -29,6 +35,7 @@ const AuthProvider = ({ children }) => {
         () => ({
             token,
             setToken,
+            deleteToken,
         }),
         [token],
     );

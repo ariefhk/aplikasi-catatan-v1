@@ -1,4 +1,4 @@
-import Navbar from '../components/navbar';
+import Navbar from '../components/navbar/navbar';
 import { Link } from 'react-router-dom';
 import LoginForm from '../components/login/login-form';
 
