@@ -10,6 +10,7 @@ const AuthProvider = ({ children }) => {
 
     // Function to set the authentication token
     const setToken = (newToken) => {
+        saveStorageData('accessToken', newToken);
         setToken_(newToken);
     };
 
