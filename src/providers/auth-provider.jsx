@@ -25,6 +25,7 @@ const AuthProvider = ({ children }) => {
             apiInstance.defaults.headers.Authorization = `Bearer ${token}`;
             saveStorageData('accessToken', token);
         } else {
+            // deleting cache auth header
             delete apiInstance.defaults.headers.common['Authorization'];
             deleteStorageData('accessToken');
         }

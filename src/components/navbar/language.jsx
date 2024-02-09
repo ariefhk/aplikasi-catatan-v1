@@ -9,7 +9,7 @@ const Language = () => {
             onClick={() => {
                 changeLocale();
             }}
-            className='h-[30px] w-[30px] cursor-pointer '
+            className='text-baseBlack h-[30px] w-[30px] cursor-pointer '
         />
     );
 };

@@ -7,12 +7,24 @@ const DarkMode = () => {
 
     switch (theme) {
         case 'light':
-            return <IoSunnyOutline onClick={() => changeTheme()} className='h-[30px] w-[30px] cursor-pointer' />;
+            return (
+                <IoSunnyOutline
+                    onClick={() => changeTheme()}
+                    className='text-baseBlack h-[30px] w-[30px] cursor-pointer'
+                />
+            );
         case 'dark':
-            return <IoMdMoon onClick={() => changeTheme()} className='h-[30px] w-[30px] cursor-pointer' />;
+            return (
+                <IoMdMoon onClick={() => changeTheme()} className='text-baseBlack h-[30px] w-[30px] cursor-pointer' />
+            );
 
         default:
-            return <IoSunnyOutline onClick={() => changeTheme()} className='h-[30px] w-[30px] cursor-pointer' />;
+            return (
+                <IoSunnyOutline
+                    onClick={() => changeTheme()}
+                    className='text-baseBlack h-[30px] w-[30px] cursor-pointer'
+                />
+            );
     }
 };
 
