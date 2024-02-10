@@ -8,10 +8,13 @@ import Swal from 'sweetalert2';
 import Loader from '../../components/loader';
 import { cn } from '../../utils/tailwind-merge';
 import PropTypes from 'prop-types';
+import { useLocale } from '../../contexts/locale-context';
+import { loginLocale } from '../../utils/locale-data';
 
 const LoginForm = ({ className }) => {
     const { setToken } = useAuth();
     const navigate = useNavigate();
+    const { locale } = useLocale();
     const {
         register,
         handleSubmit,
@@ -66,10 +69,10 @@ const LoginForm = ({ className }) => {
                     type='email '
                     disabled={isLoadingLogin}
                     {...register('email', {
-                        required: 'Email tidak boleh kosong!',
+                        required: loginLocale[locale]?.error?.emailField?.required,
                         pattern: {
                             value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                            message: 'Format email tidak sesuai!',
+                            message: loginLocale[locale]?.error?.emailField?.pattern,
                         },
                     })}
                 />
@@ -86,10 +89,10 @@ const LoginForm = ({ className }) => {
                     name='password'
                     disabled={isLoadingLogin}
                     {...register('password', {
-                        required: 'Password tidak boleh kosong!',
+                        required: loginLocale[locale]?.error?.passwordField?.required,
                         minLength: {
                             value: 8,
-                            message: 'Jumlah Karaktek tidak boleh kurang dari 8!',
+                            message: loginLocale[locale]?.error?.passwordField?.minLength,
                         },
                     })}
                 />
@@ -100,7 +103,7 @@ const LoginForm = ({ className }) => {
                 )}
             </section>
             <Button disabled={isLoadingLogin} type='submit'>
-                {isLoadingLogin && <Loader />} <span className='pl-[8px]'>Login</span>
+                {isLoadingLogin && <Loader />} <span className='pl-[8px]'>{loginLocale[locale]?.button}</span>
             </Button>
         </form>
     );

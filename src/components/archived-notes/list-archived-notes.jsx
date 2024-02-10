@@ -26,9 +26,19 @@ const ListArchivedNotes = ({ className }) => {
 
     return (
         <section className={cn('grid flex-grow grid-cols-2 gap-[12px] overflow-y-auto p-2 md:grid-cols-4', className)}>
-            {loadingNotes && <h1>Loading notes ...</h1>}
-            {errorFetchNotes && <h1>Error! </h1>}
-            {successFetchNotes && notes.length === 0 && <h1>Not found!</h1>}
+            {loadingNotes && (
+                <h1 className='text-baseBlack dark:text-baseWhite'>
+                    {locale === 'en' ? 'Loading notes ...' : 'Sedang memuat catatan ...'}
+                </h1>
+            )}
+            {errorFetchNotes && (
+                <h1 className='text-baseBlack dark:text-baseWhite'> {locale === 'en' ? 'Error!' : 'Gagal!'}</h1>
+            )}
+            {successFetchNotes && notes.length === 0 && (
+                <h1 className='text-baseBlack dark:text-baseWhite'>
+                    {locale === 'en' ? 'Not found!' : 'Tidak ditemukan!'}
+                </h1>
+            )}
             {successFetchNotes &&
                 notes.length > 0 &&
                 notes.map((note) => {

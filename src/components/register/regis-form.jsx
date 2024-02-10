@@ -4,9 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import { InputField } from '../input';
 import Button from '../button';
 import Loader from '../loader';
+import { useLocale } from '../../contexts/locale-context';
+import { registerLocale } from '../../utils/locale-data';
 
 const RegisForm = () => {
     const navigate = useNavigate();
+    const { locale } = useLocale();
     const {
         register,
         handleSubmit,
@@ -50,7 +53,7 @@ const RegisForm = () => {
                     type='text'
                     name='name'
                     {...register('name', {
-                        required: 'Nama tidak boleh kosong!',
+                        required: registerLocale[locale]?.error?.nameField?.required,
                     })}
                 />
                 {errors?.name?.message ? (
@@ -66,10 +69,10 @@ const RegisForm = () => {
                     type='email'
                     name='email'
                     {...register('email', {
-                        required: 'Email tidak boleh kosong!',
+                        required: registerLocale[locale]?.error?.emailField?.required,
                         pattern: {
                             value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-                            message: 'Format email tidak sesuai!',
+                            message: registerLocale[locale]?.error?.emailField?.pattern,
                         },
                     })}
                 />
@@ -86,10 +89,10 @@ const RegisForm = () => {
                     label='Password'
                     name='password'
                     {...register('password', {
-                        required: 'Password tidak boleh kosong!',
+                        required: registerLocale[locale]?.error?.passwordField?.required,
                         minLength: {
                             value: 8,
-                            message: 'Jumlah Karaktek tidak boleh kurang dari 8!',
+                            message: registerLocale[locale]?.error?.passwordField?.minLength,
                         },
                     })}
                 />
@@ -103,13 +106,13 @@ const RegisForm = () => {
                 <InputField
                     disabled={loadingRegis}
                     passwordField
-                    label='Confirm Password'
+                    label={locale === 'en' ? 'Confirm Password' : 'Konfirmasi Password'}
                     name='konfirmasi_password'
                     {...register('confirm_password', {
-                        required: 'Password tidak boleh kosong!',
+                        required: registerLocale[locale]?.error?.confirmPasswordField?.required,
                         minLength: {
                             value: 8,
-                            message: 'Jumlah Karaktek tidak boleh kurang dari 8!',
+                            message: registerLocale[locale]?.error?.confirmPasswordField?.minLength,
                         },
                     })}
                 />
@@ -121,7 +124,7 @@ const RegisForm = () => {
             </section>
 
             <Button disabled={loadingRegis}>
-                {loadingRegis && <Loader />} <span className='pl-[8px]'>Register</span>
+                {loadingRegis && <Loader />} <span className='pl-[8px]'>{registerLocale[locale]?.button}</span>
             </Button>
         </form>
     );

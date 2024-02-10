@@ -5,6 +5,7 @@ import { getStorageData, saveStorageData } from '../utils/local-storage';
 
 const ThemeContextProvider = ({ children }) => {
     const [theme, setTheme] = useState(getStorageData('theme') || 'light');
+    const colorTheme = theme === 'dark' ? 'light' : 'dark';
 
     const changeTheme = useCallback(() => {
         const isLight = theme === 'light';

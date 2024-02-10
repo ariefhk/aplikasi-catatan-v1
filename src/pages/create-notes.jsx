@@ -11,6 +11,8 @@ import { useCreateNote } from '../networks/note';
 import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
 import Loader from '../components/loader';
+import { useLocale } from '../contexts/locale-context';
+import { createNoteLocale } from '../utils/locale-data';
 
 const CreateNotes = () => {
     const {
@@ -22,6 +24,7 @@ const CreateNotes = () => {
     });
 
     const navigate = useNavigate();
+    const { locale } = useLocale();
 
     const { mutate: createNote, isPending: loadingCreateNote } = useCreateNote({
         onSuccess: (data) => {
@@ -63,7 +66,7 @@ const CreateNotes = () => {
                     <section>
                         <Input
                             disabled={loadingCreateNote}
-                            placeholder='Catatan Rahasia'
+                            placeholder={createNoteLocale[locale]?.title}
                             className={cn(
                                 'h-auto rounded-[8px] border-none px-0 py-[8px] text-[64px] font-bold placeholder:text-[#333333] placeholder:text-opacity-60 dark:bg-black dark:text-baseWhite dark:placeholder:text-baseWhite',
                                 {
@@ -71,7 +74,7 @@ const CreateNotes = () => {
                                 },
                             )}
                             {...register('title', {
-                                required: 'Judul tidak boleh kosong!',
+                                required: `${createNoteLocale[locale].error?.titleField?.required}`,
                             })}
                         />
                         {errors?.title?.message ? (
@@ -84,9 +87,9 @@ const CreateNotes = () => {
                         <textarea
                             disabled={loadingCreateNote}
                             name=''
-                            placeholder='Sebenarnya saya adalah ...'
+                            placeholder={createNoteLocale[locale]?.body}
                             {...register('body', {
-                                required: 'Deskripsi catatan tidak boleh kosong!',
+                                required: `${createNoteLocale[locale].error?.bodyField?.required}`,
                             })}
                             className={cn(
                                 'flex-grow bg-baseWhite py-[8px] text-[24px] leading-normal placeholder:text-[#333333] placeholder:text-opacity-60 dark:bg-black dark:text-baseWhite dark:placeholder:text-baseWhite',
