@@ -6,13 +6,13 @@ const NavbarBrand = () => {
 
     if (token) {
         return (
-            <Link to={'/'} className='text-baseBlack text-3xl font-semibold underline'>
+            <Link to={'/'} className='text-3xl font-semibold text-baseBlack underline dark:text-baseWhite'>
                 Aplikasi Catatan
             </Link>
         );
     }
 
-    return <h1 className='text-baseBlack text-3xl font-semibold underline'>Aplikasi Catatan</h1>;
+    return <h1 className='text-3xl font-semibold text-baseBlack underline dark:text-baseWhite'>Aplikasi Catatan</h1>;
 };
 
 export default NavbarBrand;

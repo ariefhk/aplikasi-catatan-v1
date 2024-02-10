@@ -13,7 +13,7 @@ const Loader = ({ className }) => {
             strokeWidth='2'
             strokeLinecap='round'
             strokeLinejoin='round'
-            className={cn('h-[32px] w-[32px] animate-spin', className)}>
+            className={cn('h-[32px] w-[32px] animate-spin text-baseWhite dark:text-baseBlack', className)}>
             <path d='M21 12a9 9 0 1 1-6.219-8.56' />
         </svg>
     );

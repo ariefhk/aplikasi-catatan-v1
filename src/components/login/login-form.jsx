@@ -52,8 +52,6 @@ const LoginForm = ({ className }) => {
             password: data?.password,
         };
 
-        // console.log('Form Data: ', data);
-
         login(formData);
     };
 
@@ -61,7 +59,7 @@ const LoginForm = ({ className }) => {
         <form
             className={cn('flex h-full w-full flex-col gap-y-[8px]', className)}
             onSubmit={handleSubmit(handleLoginAccount)}>
-            <div className='w-full'>
+            <section className='w-full'>
                 <InputField
                     label='Email'
                     name='email'
@@ -80,7 +78,7 @@ const LoginForm = ({ className }) => {
                 ) : (
                     <div className='invisible block h-[24px]'></div>
                 )}
-            </div>
+            </section>
             <section className='w-full'>
                 <InputField
                     passwordField

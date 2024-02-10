@@ -1,4 +1,4 @@
-import { useState, useMemo, useCallback } from 'react';
+import { useState, useMemo, useCallback, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { ThemeContext } from '../contexts/theme-context';
 import { getStorageData, saveStorageData } from '../utils/local-storage';
@@ -15,6 +15,13 @@ const ThemeContextProvider = ({ children }) => {
             saveStorageData('theme', 'light');
             return setTheme('light');
         }
+    }, [theme]);
+
+    useEffect(() => {
+        const className = 'dark';
+        const bodyClass = window.document.body.classList;
+
+        theme === 'dark' ? bodyClass.add(className) : bodyClass.remove(className);
     }, [theme]);
 
     // Memoized value of the theme context

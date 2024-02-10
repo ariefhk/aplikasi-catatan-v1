@@ -7,10 +7,18 @@ const LoggedUser = () => {
 
     if (token) {
         if (isLoading) {
-            return <h1 className='text-[18px] font-medium leading-normal'>Sedang Memuat User...</h1>;
+            return (
+                <h1 className='text-[18px] font-medium leading-normal text-baseBlack dark:text-baseWhite'>
+                    Sedang Memuat User...
+                </h1>
+            );
         }
 
-        return <h1 className='text-[18px] font-medium leading-normal'>{data?.data?.name}</h1>;
+        return (
+            <h1 className='text-[18px] font-medium leading-normal text-baseBlack dark:text-baseWhite'>
+                {data?.data?.name}
+            </h1>
+        );
     }
 
     return false;

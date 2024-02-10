@@ -5,7 +5,12 @@ const Logout = () => {
     const { deleteToken, token } = useAuth();
 
     if (token) {
-        return <IoLogOutOutline className='h-[30px] w-[30px] cursor-pointer' onClick={() => deleteToken()} />;
+        return (
+            <IoLogOutOutline
+                className='h-[30px] w-[30px] cursor-pointer text-baseBlack dark:text-baseWhite'
+                onClick={() => deleteToken()}
+            />
+        );
     }
 
     return false;

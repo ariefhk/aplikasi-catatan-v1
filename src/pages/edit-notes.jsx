@@ -10,6 +10,7 @@ import Swal from 'sweetalert2';
 import { MdOutlineArchive, MdOutlineUnarchive } from 'react-icons/md';
 import { FiTrash } from 'react-icons/fi';
 import Button from '../components/button';
+import ContentLayout from '../layouts/content-layout';
 
 const EditNote = () => {
     const { id: noteId } = useParams();
@@ -104,10 +105,7 @@ const EditNote = () => {
     return (
         <DefaultLayout className={'relative overflow-y-hidden'}>
             <Navbar />
-            <section
-                className={
-                    'mx-auto mt-[60px] flex h-full max-w-screen-lg flex-col gap-y-[20px]  px-[20px] pb-[80px]  pt-[40px] md:px-0'
-                }>
+            <ContentLayout>
                 {isLoading && (
                     <h1 className=' text-[64px] font-bold leading-normal text-baseBlack'>Sedang memuat catatan...</h1>
                 )}
@@ -116,32 +114,35 @@ const EditNote = () => {
                 )}
                 {isSuccess && (
                     <div className='flex-grow overflow-y-auto'>
-                        <h2 className=' text-[64px] font-bold leading-normal text-baseBlack'>{note?.title}</h2>
-                        <p className='  text-[16px] leading-normal text-[#6d6d6d]'>
+                        <h2 className=' text-[64px] font-bold leading-normal text-baseBlack dark:text-baseWhite'>
+                            {note?.title}
+                        </h2>
+                        <p className='  text-[16px] leading-normal text-[#6d6d6d] dark:text-baseWhite'>
                             {reformatDate(note?.createdAt, locale)}
                         </p>
-                        <p className='pt-[36px] text-[18px] leading-[27px] text-baseBlack'>{note?.body}</p>
+                        <p className='pt-[36px] text-[18px] leading-[27px] text-baseBlack dark:text-baseWhite'>
+                            {note?.body}
+                        </p>
                     </div>
                 )}
-            </section>
-
+            </ContentLayout>
             {isSuccess && (
                 <section className='absolute bottom-[32px] right-[32px] flex items-center gap-x-[16px]'>
                     <Button
                         disabled={loadingArchivingNote}
                         onClick={() => handleArchive(noteId)}
-                        className='flex h-[50px] w-[50px] items-center justify-center rounded-full bg-baseBlack p-0'>
+                        className='flex h-[50px] w-[50px] items-center justify-center rounded-full bg-baseBlack p-0 dark:border-baseWhite dark:bg-baseWhite'>
                         {note?.archived ? (
-                            <MdOutlineArchive className='h-[32px] w-[32px] text-baseWhite' />
+                            <MdOutlineArchive className='h-[32px] w-[32px] text-baseWhite dark:text-baseBlack' />
                         ) : (
-                            <MdOutlineUnarchive className='h-[32px] w-[32px] text-baseWhite' />
+                            <MdOutlineUnarchive className='h-[32px] w-[32px] text-baseWhite dark:text-baseBlack' />
                         )}
                     </Button>
                     <Button
                         disabled={loadingDeletingNote}
                         onClick={() => handleDeletingNote(noteId)}
-                        className='flex h-[50px]  w-[50px] items-center justify-center rounded-full bg-baseBlack p-0'>
-                        <FiTrash className='h-[32px] w-[32px] text-baseWhite' />
+                        className='flex h-[50px]  w-[50px] items-center justify-center rounded-full bg-baseBlack p-0 dark:border-baseWhite dark:bg-baseWhite'>
+                        <FiTrash className='h-[32px] w-[32px] text-baseWhite dark:text-baseBlack ' />
                     </Button>
                 </section>
             )}

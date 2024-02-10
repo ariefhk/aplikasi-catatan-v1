@@ -12,7 +12,7 @@ const Input = forwardRef(({ className, type, ...props }, ref) => {
             ref={ref}
             type={type || 'text'}
             className={cn(
-                'h-[43px] w-full rounded-[8px] border-[3px] border-baseBlack bg-baseWhite p-[8px] text-[18px] leading-normal text-baseBlack',
+                'h-[43px] w-full rounded-[8px] border-[3px] border-baseBlack bg-baseWhite p-[8px] text-[18px] leading-normal text-baseBlack dark:border-baseWhite dark:bg-black',
                 className,
             )}
         />
@@ -35,7 +35,7 @@ const InputQuery = forwardRef(function InputQuery({ type, query, className, ...p
             ref={ref}
             type={type || 'text'}
             className={cn(
-                'h-[43px] w-full rounded-[8px] border-[3px] border-baseBlack bg-baseWhite p-[8px] text-[18px] leading-normal text-baseBlack',
+                'h-[43px] w-full rounded-[8px] border-[3px] border-baseBlack bg-baseWhite p-[8px] text-[18px] leading-normal text-baseBlack dark:border-baseWhite dark:bg-black dark:text-baseWhite',
                 className,
             )}
             value={keywordQueryInput}
@@ -62,19 +62,19 @@ const PasswordInput = forwardRef(({ className, ...props }, ref) => {
                 ref={ref}
                 type={showPassword ? 'text' : 'password'}
                 className={cn(
-                    'h-[43px] w-full rounded-[8px] border-[3px] border-baseBlack bg-baseWhite p-[8px] text-[18px] leading-normal text-baseBlack',
+                    'h-[43px] w-full rounded-[8px] border-[3px] border-baseBlack bg-baseWhite p-[8px] text-[18px] leading-normal text-baseBlack dark:border-baseWhite dark:bg-black dark:text-baseWhite',
                     className,
                 )}
             />
             {showPassword ? (
                 <FiEye
                     onClick={togglePassword}
-                    className={` absolute right-1 top-[50%] mr-3 h-[24px] w-[24px] translate-y-[-50%] cursor-pointer `}
+                    className={` absolute right-1 top-[50%] mr-3 h-[24px] w-[24px] translate-y-[-50%] cursor-pointer text-baseBlack dark:text-baseWhite`}
                 />
             ) : (
                 <FiEyeOff
                     onClick={togglePassword}
-                    className={` absolute right-1 top-[50%] mr-3 h-[24px] w-[24px] translate-y-[-50%] cursor-pointer `}
+                    className={` absolute right-1 top-[50%] mr-3 h-[24px] w-[24px] translate-y-[-50%] cursor-pointer text-baseBlack dark:text-baseWhite`}
                 />
             )}
         </section>
@@ -92,7 +92,9 @@ const InputField = forwardRef(
         if (passwordField) {
             return (
                 <section className={cn('flex w-full flex-col gap-y-[4px]', classNameWrapper)}>
-                    <Label htmlFor={name} className={cn(classNameLabel)}>
+                    <Label
+                        htmlFor={name}
+                        className={cn('dark:border-baseWhite dark:bg-black dark:text-baseWhite', classNameLabel)}>
                         {label}
                     </Label>
                     <PasswordInput
@@ -102,7 +104,7 @@ const InputField = forwardRef(
                         ref={ref}
                         type={type || 'text'}
                         className={cn(
-                            'h-[43px] w-full rounded-[8px] border-[3px] border-baseBlack bg-baseWhite p-[8px] text-[18px] leading-normal text-baseBlack',
+                            'h-[43px] w-full rounded-[8px] border-[3px] border-baseBlack bg-baseWhite p-[8px] text-[18px] leading-normal text-baseBlack ',
                             classNameInput,
                         )}
                     />
@@ -112,7 +114,9 @@ const InputField = forwardRef(
 
         return (
             <section className={cn('flex w-full flex-col gap-y-[4px]', classNameWrapper)}>
-                <Label htmlFor={name} className={cn(classNameLabel)}>
+                <Label
+                    htmlFor={name}
+                    className={cn('dark:border-baseWhite dark:bg-black dark:text-baseWhite', classNameLabel)}>
                     {label}
                 </Label>
                 <Input
@@ -122,7 +126,7 @@ const InputField = forwardRef(
                     ref={ref}
                     type={type || 'text'}
                     className={cn(
-                        'h-[43px] w-full rounded-[8px] border-[3px] border-baseBlack bg-baseWhite p-[8px] text-[18px] leading-normal text-baseBlack',
+                        'h-[43px] w-full rounded-[8px] border-[3px] border-baseBlack bg-baseWhite p-[8px] text-[18px] leading-normal text-baseBlack dark:border-baseWhite dark:bg-black dark:text-baseWhite',
                         classNameInput,
                     )}
                 />

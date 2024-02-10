@@ -41,9 +41,9 @@ const RegisForm = () => {
 
     return (
         <form
-            className='my-[32px] flex h-full w-full flex-col gap-y-[8px]'
+            className='mt-[32px] flex h-full w-full flex-col gap-y-[8px]'
             onSubmit={handleSubmit(handleRegisterAccount)}>
-            <div className='w-full'>
+            <section className='w-full'>
                 <InputField
                     disabled={loadingRegis}
                     label='Name'
@@ -58,8 +58,8 @@ const RegisForm = () => {
                 ) : (
                     <div className='invisible block h-[24px]'></div>
                 )}
-            </div>
-            <div className='w-full'>
+            </section>
+            <section className='w-full'>
                 <InputField
                     disabled={loadingRegis}
                     label='Email'
@@ -78,8 +78,8 @@ const RegisForm = () => {
                 ) : (
                     <div className='invisible block h-[24px]'></div>
                 )}
-            </div>
-            <div className='w-full'>
+            </section>
+            <section className='w-full'>
                 <InputField
                     disabled={loadingRegis}
                     passwordField
@@ -98,8 +98,8 @@ const RegisForm = () => {
                 ) : (
                     <div className='invisible block h-[24px]'></div>
                 )}
-            </div>
-            <div className='w-full'>
+            </section>
+            <section className='w-full'>
                 <InputField
                     disabled={loadingRegis}
                     passwordField
@@ -118,7 +118,7 @@ const RegisForm = () => {
                 ) : (
                     <div className='invisible block h-[24px]'></div>
                 )}
-            </div>
+            </section>
 
             <Button disabled={loadingRegis}>
                 {loadingRegis && <Loader />} <span className='pl-[8px]'>Register</span>

@@ -8,7 +8,7 @@ const Button = forwardRef(function Button({ className, type, children, ...props 
             {...props}
             ref={ref}
             className={cn(
-                'flex h-[53px] w-full   items-center justify-center rounded-[8px] border-2 border-baseBlack bg-baseBlack p-[12px] text-[24px] font-bold leading-normal text-baseWhite',
+                'flex h-[53px] w-full   items-center justify-center rounded-[8px] border-2 border-baseBlack bg-baseBlack p-[12px] text-[24px] font-bold leading-normal text-baseWhite dark:border-baseWhite dark:bg-baseWhite dark:text-baseBlack',
                 className,
             )}
             type={type}>

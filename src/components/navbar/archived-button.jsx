@@ -8,7 +8,9 @@ const ArchivedButton = () => {
 
     if (token) {
         return (
-            <Link className='text-[18px] font-medium leading-normal' to={'/archives'}>
+            <Link
+                className='text-[18px] font-medium leading-normal text-baseBlack dark:text-baseWhite'
+                to={'/archives'}>
                 {locale === 'id' ? 'Terarsip' : 'Archived'}
             </Link>
         );

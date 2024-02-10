@@ -65,7 +65,7 @@ const CreateNotes = () => {
                             disabled={loadingCreateNote}
                             placeholder='Catatan Rahasia'
                             className={cn(
-                                'h-auto rounded-[8px] border-none px-0 py-[8px] text-[64px] font-bold placeholder:text-[#333333] placeholder:text-opacity-60',
+                                'h-auto rounded-[8px] border-none px-0 py-[8px] text-[64px] font-bold placeholder:text-[#333333] placeholder:text-opacity-60 dark:bg-black dark:text-baseWhite dark:placeholder:text-baseWhite',
                                 {
                                     'outline-red-500': errors?.title?.message,
                                 },
@@ -89,7 +89,7 @@ const CreateNotes = () => {
                                 required: 'Deskripsi catatan tidak boleh kosong!',
                             })}
                             className={cn(
-                                'flex-grow bg-baseWhite py-[8px] text-[24px] leading-normal placeholder:text-[#333333] placeholder:text-opacity-60',
+                                'flex-grow bg-baseWhite py-[8px] text-[24px] leading-normal placeholder:text-[#333333] placeholder:text-opacity-60 dark:bg-black dark:text-baseWhite dark:placeholder:text-baseWhite',
                                 {
                                     'outline-red-500': errors?.body?.message,
                                 },
@@ -103,11 +103,11 @@ const CreateNotes = () => {
                     <Button
                         disabled={loadingCreateNote}
                         type='submit'
-                        className='absolute bottom-[32px] right-[32px] h-[50px] w-[50px] rounded-full p-0'>
+                        className='absolute bottom-[32px] right-[32px] h-[50px] w-[50px] rounded-full p-0 dark:border-baseWhite dark:bg-baseWhite'>
                         {loadingCreateNote ? (
-                            <Loader className='h-[32px] w-[32px] text-baseWhite' />
+                            <Loader className='h-[32px] w-[32px] text-baseWhite dark:text-baseBlack' />
                         ) : (
-                            <MdCheck className='h-[32px] w-[32px] text-baseWhite' />
+                            <MdCheck className='h-[32px] w-[32px] text-baseWhite dark:text-baseBlack' />
                         )}
                     </Button>
                 </form>
