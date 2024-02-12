@@ -37,7 +37,6 @@ const ListNotes = ({ className }) => {
             {successFetchNotes &&
                 notes.length > 0 &&
                 notes.map((note) => {
-                    console.log(note);
                     return (
                         <div
                             onClick={() => navigate(`/notes/${note?.id}`)}
