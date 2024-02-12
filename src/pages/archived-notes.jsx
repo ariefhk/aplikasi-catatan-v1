@@ -1,6 +1,6 @@
 import ListArchivedNotes from '../components/archived-notes/list-archived-notes';
 import { InputQuery } from '../components/input';
-import Navbar from '../components/navbar/navbar';
+import { Navbar } from '../components/navbar';
 import DefaultLayout from '../layouts/default-layout';
 import ContentLayout from '../layouts/content-layout';
 import TitlePage from '../components/title-page';

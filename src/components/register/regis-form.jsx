@@ -1,11 +1,11 @@
 import { useForm } from 'react-hook-form';
-import { useRegister } from '../../networks/auth';
 import { useNavigate } from 'react-router-dom';
+import { useLocale } from '../../contexts/locale-context';
+import { useRegister } from '../../networks/auth';
+import { registerLocale } from '../../utils/locale-data';
 import { InputField } from '../input';
 import Button from '../button';
 import Loader from '../loader';
-import { useLocale } from '../../contexts/locale-context';
-import { registerLocale } from '../../utils/locale-data';
 
 const RegisForm = () => {
     const navigate = useNavigate();
@@ -31,8 +31,6 @@ const RegisForm = () => {
     });
 
     const handleRegisterAccount = async (data) => {
-        console.log(data);
-
         const formData = {
             name: data?.name,
             email: data?.email,

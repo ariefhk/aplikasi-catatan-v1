@@ -1,4 +1,4 @@
-import Navbar from '../components/navbar/navbar';
+import { Navbar } from '../components/navbar';
 import RegisForm from '../components/register/regis-form';
 import DefaultLayout from '../layouts/default-layout';
 import ContentLayout from '../layouts/content-layout';

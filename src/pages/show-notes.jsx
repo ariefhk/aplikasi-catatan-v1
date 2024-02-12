@@ -1,22 +1,19 @@
-import { useParams, useNavigate } from 'react-router-dom';
-import DefaultLayout from '../layouts/default-layout';
-import Navbar from '../components/navbar/navbar';
+// networks
 import { useGetNote, usePostArchiveNote, useDeleteNote, usePostUnArchiveNote } from '../networks/note';
-import { reformatDate } from '../utils/format-date';
-import { useLocale } from '../contexts/locale-context';
 import Swal from 'sweetalert2';
-
-//
-import { MdOutlineArchive, MdOutlineUnarchive } from 'react-icons/md';
-import { FiTrash } from 'react-icons/fi';
-import Button from '../components/button';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Navbar } from '../components/navbar';
+import ShowNotesButton from '../components/show-notes/show-notes-button';
+import { ErrorNote, LoadingNote, SuccessNote } from '../components/note';
+import DefaultLayout from '../layouts/default-layout';
 import ContentLayout from '../layouts/content-layout';
 
-const EditNote = () => {
+const ShowNotes = () => {
     const { id: noteId } = useParams();
-    const { locale } = useLocale();
     const navigate = useNavigate();
+
     const { data: note, isSuccess, isLoading, isError } = useGetNote(noteId);
+
     const { mutate: archivingNote, isPending: loadingArchivingNote } = usePostArchiveNote({
         onSuccess: (data) => {
             Swal.fire({
@@ -106,48 +103,20 @@ const EditNote = () => {
         <DefaultLayout className={'relative overflow-y-hidden'}>
             <Navbar />
             <ContentLayout>
-                {isLoading && (
-                    <h1 className=' text-[64px] font-bold leading-normal text-baseBlack'>Sedang memuat catatan...</h1>
-                )}
-                {isError && (
-                    <h1 className=' text-[64px] font-bold leading-normal text-baseBlack'>Gagal memuat catatan</h1>
-                )}
-                {isSuccess && (
-                    <div className='flex-grow overflow-y-auto'>
-                        <h2 className=' text-[64px] font-bold leading-normal text-baseBlack dark:text-baseWhite'>
-                            {note?.title}
-                        </h2>
-                        <p className='  text-[16px] leading-normal text-[#6d6d6d] dark:text-baseWhite'>
-                            {reformatDate(note?.createdAt, locale)}
-                        </p>
-                        <p className='pt-[36px] text-[18px] leading-[27px] text-baseBlack dark:text-baseWhite'>
-                            {note?.body}
-                        </p>
-                    </div>
-                )}
+                {isLoading && <LoadingNote />}
+                {isError && <ErrorNote />}
+                {isSuccess && <SuccessNote title={note?.title} createdAt={note?.createdAt} body={note?.body} />}
             </ContentLayout>
-            {isSuccess && (
-                <section className='absolute bottom-[32px] right-[32px] flex items-center gap-x-[16px]'>
-                    <Button
-                        disabled={loadingArchivingNote}
-                        onClick={() => handleArchive(noteId)}
-                        className='flex h-[50px] w-[50px] items-center justify-center rounded-full bg-baseBlack p-0 dark:border-baseWhite dark:bg-baseWhite'>
-                        {note?.archived ? (
-                            <MdOutlineArchive className='h-[32px] w-[32px] text-baseWhite dark:text-baseBlack' />
-                        ) : (
-                            <MdOutlineUnarchive className='h-[32px] w-[32px] text-baseWhite dark:text-baseBlack' />
-                        )}
-                    </Button>
-                    <Button
-                        disabled={loadingDeletingNote}
-                        onClick={() => handleDeletingNote(noteId)}
-                        className='flex h-[50px]  w-[50px] items-center justify-center rounded-full bg-baseBlack p-0 dark:border-baseWhite dark:bg-baseWhite'>
-                        <FiTrash className='h-[32px] w-[32px] text-baseWhite dark:text-baseBlack ' />
-                    </Button>
-                </section>
-            )}
+            <ShowNotesButton
+                isShowButton={isSuccess}
+                isArchive={note?.archived}
+                isLoadingArchive={loadingArchivingNote || loadingUnArchivingNote}
+                isLoadingDelete={loadingDeletingNote}
+                onClickArchive={() => handleArchive(noteId)}
+                onClickDelete={() => handleDeletingNote(noteId)}
+            />
         </DefaultLayout>
     );
 };
 
-export default EditNote;
+export default ShowNotes;

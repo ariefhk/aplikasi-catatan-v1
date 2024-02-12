@@ -1,15 +1,15 @@
-import { useForm } from 'react-hook-form';
-import { useLogin } from '../../networks/auth';
+import Swal from 'sweetalert2';
 import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { useForm } from 'react-hook-form';
 import { useAuth } from '../../contexts/auth-context';
+import { useLocale } from '../../contexts/locale-context';
+import { useLogin } from '../../networks/auth';
+import { cn } from '../../utils/tailwind-merge';
+import { loginLocale } from '../../utils/locale-data';
 import { InputField } from '../../components/input';
 import Button from '../../components/button';
-import Swal from 'sweetalert2';
 import Loader from '../../components/loader';
-import { cn } from '../../utils/tailwind-merge';
-import PropTypes from 'prop-types';
-import { useLocale } from '../../contexts/locale-context';
-import { loginLocale } from '../../utils/locale-data';
 
 const LoginForm = ({ className }) => {
     const { setToken } = useAuth();
