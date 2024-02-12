@@ -1,7 +1,5 @@
 import { apiInstance } from './instance';
 import { useMutation, useQuery } from '@tanstack/react-query';
-import { getStorageData } from '../utils/local-storage';
-import { AxiosError } from 'axios';
 
 export const useRegister = (mutationSetting = {}) => {
     return useMutation({

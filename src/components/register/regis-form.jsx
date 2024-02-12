@@ -6,6 +6,7 @@ import { registerLocale } from '../../utils/locale-data';
 import { InputField } from '../input';
 import Button from '../button';
 import Loader from '../loader';
+import Swal from 'sweetalert2';
 
 const RegisForm = () => {
     const navigate = useNavigate();
@@ -14,23 +15,51 @@ const RegisForm = () => {
         register,
         handleSubmit,
         formState: { errors },
+        setError,
     } = useForm({
         mode: 'onChange',
     });
 
     const { isPending: loadingRegis, mutate: regis } = useRegister({
         onSuccess: (dataRegis) => {
-            alert('SUCCESS REGIS');
-            console.log('Regis Data: ', dataRegis);
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil Mendaftar',
+                text: `Selamat Anda berhasil mendaftar!`,
+                timerProgressBar: true,
+                timer: 1300,
+            });
             navigate('/login', { replace: true });
         },
         onError: (errorRegis) => {
-            alert('ERROR REGIS');
-            console.log('Error Regis: ', errorRegis);
+            Swal.fire({
+                icon: 'error',
+                title: 'Gagal Mendaftar',
+                text: `Maaf, Anda gagal untuk mendaftar!`,
+                timerProgressBar: true,
+                timer: 1300,
+            });
         },
     });
 
     const handleRegisterAccount = async (data) => {
+        if (data?.password !== data?.confirm_password) {
+            setError('password', {
+                type: 'same_password',
+                message:
+                    locale === 'en'
+                        ? 'The password must be the same as the confirmation password'
+                        : 'Password harus sama dengan konfirmasi password',
+            });
+            setError('confirm_password', {
+                type: 'same_password',
+                message:
+                    locale === 'en'
+                        ? 'The confirmation password must be the same as the password'
+                        : 'Konfirmasi Password harus sama dengan password',
+            });
+            return;
+        }
         const formData = {
             name: data?.name,
             email: data?.email,

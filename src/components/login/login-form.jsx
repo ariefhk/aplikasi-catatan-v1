@@ -25,7 +25,6 @@ const LoginForm = ({ className }) => {
 
     const { isPending: isLoadingLogin, mutate: login } = useLogin({
         onSuccess: (dataLogin) => {
-            // console.log('Login Data: ', dataLogin);
             const tokenFromAPI = dataLogin?.data?.accessToken;
             setToken(tokenFromAPI);
             Swal.fire({
@@ -38,7 +37,6 @@ const LoginForm = ({ className }) => {
             navigate('/', { replace: true });
         },
         onError: (errorLogin) => {
-            // console.log('Error Login: ', errorLogin);
             Swal.fire({
                 icon: 'error',
                 title: 'Gagal Login',

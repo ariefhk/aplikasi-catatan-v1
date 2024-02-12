@@ -1,4 +1,3 @@
-// networks
 import { useGetNote, usePostArchiveNote, useDeleteNote, usePostUnArchiveNote } from '../networks/note';
 import Swal from 'sweetalert2';
 import { useParams, useNavigate } from 'react-router-dom';
